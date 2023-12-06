@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { getUserData } from '../actions/actions';
 import {useNavigate} from 'react-router-dom';
-
+import { useUser } from '../actions/store/auth';
 const Callback = () => {
+  const { login } = useUser();
   const navigate = useNavigate();
   useEffect(() => {
     const search = window.location.search
@@ -10,10 +11,11 @@ const Callback = () => {
     const code = params.get('code');
     (async () => {
       if (code) {
-        const { statusCode } = await getUserData({ code })
+        const { statusCode, data } = await getUserData({ code })
         if (statusCode >= 300) {
           return
         }
+        login(data)
         if (statusCode === 200) {
           navigate('/')
           return

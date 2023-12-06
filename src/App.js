@@ -4,6 +4,9 @@ import Login from './container/Login'
 import Callback from './container/Callback'
 import Homepage from './container/Homepage'
 import Article from './container/Article'
+import GenerateImage from './container/GenerateImage'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import { 
   // createBrowserRouter,
   // RouterProvider,
@@ -12,7 +15,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-import UserDataProvider from "./actions/provider/user";
+import {UserProvider} from "./actions/store/auth";
 import Register from "./container/Register";
 import Navbar from "./container/Navbar";
 import styled from "styled-components";
@@ -39,26 +42,32 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 `
-
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function App() {
   return (
     <div className="App">
         <BrowserRouter>
-          <UserDataProvider>
-            <Container>
-              <Navbar />
-            <Routes>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/callback" element={<Callback />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/article/:articleId" element={<Article />} />
-            </Routes>
-
-            </Container>
-
-          </UserDataProvider>
+          <UserProvider>
+            <ThemeProvider theme={darkTheme}>
+              <CssBaseline />
+              <Container>
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<Homepage />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/callback" element={<Callback />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/article/:articleId" element={<Article />} />
+                  <Route path="create" element={<GenerateImage />} />
+                </Routes>
+              </Container>
+            </ThemeProvider>
+          </UserProvider>
         </BrowserRouter>
     </div>
   );

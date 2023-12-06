@@ -44,8 +44,7 @@ const ToolContainer = styled(Box)`
 `;
 
 
-const Navbar = ({ name }) => {
-  console.log(name)
+const Navbar = ({ username }) => {
   return (
     <StyledAppBar position="static">
       <StyledToolbar>
@@ -55,16 +54,22 @@ const Navbar = ({ name }) => {
           </StyledTypography>
         </Link>
         <ToolContainer>
-          <Link to="/create">
+          {
+            username &&
+            <Link to="/create">
               <StyledButton color="inherit">
-                  製作
+                製作
               </StyledButton>
-          </Link>
-          <Link to="/login">
+            </Link>
+          }
+          {
+            username ||
+            <Link to="/login">
               <StyledButton color="inherit">
-                  登入
+                登入
               </StyledButton>
-          </Link>
+            </Link>
+          }
         </ToolContainer>
       </StyledToolbar>
     </StyledAppBar>

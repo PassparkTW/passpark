@@ -21,5 +21,16 @@ export const getArticle = async ({ articleId }) => {
     return {}
   }
   return { article }
-
 }
+
+export const generateImage = async (data) => {
+  const res = await HTTP.generateImage(data)
+  const statusCode = res.status
+  const image = await res.json()
+  return { statusCode, image }
+}
+
+export const doLoginSuccess = (payload) => ({
+  type: 'SET_USER_DATA',
+  payload,
+})

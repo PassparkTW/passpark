@@ -31,3 +31,15 @@ export const getArticle = ({ articleId }) => {
     mode: 'cors'
   })
 }
+
+export const generateImage = (data) => {
+  return fetch(`${HOST}/generate`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+    credentials: 'include',
+    mode: 'cors'
+  })
+}

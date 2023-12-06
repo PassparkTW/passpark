@@ -149,25 +149,19 @@ return (
 }
 
 
-const Article = () => {
-  const uri = "https://cdn-lumos.s3.ap-northeast-1.amazonaws.com/0338d631-7250-4e05-a5d4-c382209faced.png"
-  const username = "test"
-  const createTime = "2021-10-17T11:00:00.000Z"
-  const articleStyle = "平面插畫"
-  const articleTool = "物件"
-  const keyword = "卓子"
+const Article = ({ article }) => {
   return (
     <ArticleContainer>
       <ImageContainer>
         <img
           style={{ maxWidth: "100%", maxHeight: "100%" }}
-          src={uri}
-          alt={username}
+          src={article.Url}
+          alt={article.Keyword}
           />
       </ImageContainer>
       <AuthorContainer>
-        <AuthorMeta username={username} datetime={createTime} />
-        <ToolInfos toolName={articleTool} articleStyle={articleStyle} keyword={keyword} />
+        <AuthorMeta username={article.AuthorName} datetime={new Date(article.CreatedAt).toDateString()} />
+        <ToolInfos toolName={article.Tool} articleStyle={article.Style} keyword={article.Keyword} />
       </AuthorContainer>
     </ArticleContainer>
   )

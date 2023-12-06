@@ -7,8 +7,8 @@
             "openid",
             "profile"
         ],
-        "RedirectUriSignIn": "http://localhost:3000/callback",
-        "RedirectUriSignOut": "http://localhost:3000",
+        "RedirectUriSignIn": "https://dev-hyper.flow.tw/callback",
+        "RedirectUriSignOut": "https://dev-hyper.flow.tw/",
         "IdentityProvider": "Google"
     }
 }

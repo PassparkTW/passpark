@@ -4,6 +4,9 @@ export const getUserData = async ({ code }) => {
   const res = await HTTP.getUserData(code)
   const statusCode = res.status
   const data = await res.json()
+  if (statusCode === 201 || statusCode === 200) {
+    localStorage.setItem('token', data.access_token)
+  }
   return { statusCode, data }
 }
 
@@ -28,6 +31,12 @@ export const generateImage = async (data) => {
   const statusCode = res.status
   const image = await res.json()
   return { statusCode, image }
+}
+
+export const getImages = async (page) => {
+  const res = await HTTP.getImages(page)
+  const { articles } = await res.json()
+  return articles
 }
 
 export const doLoginSuccess = (payload) => ({

@@ -1,14 +1,14 @@
 {
     "AUTH_DATA": {
-        "ClientId": "1outs54s4f88cgj8il5e4c89e8",
-        "AppWebDomain": "dev-hapre.auth.ap-northeast-1.amazoncognito.com",
+        "ClientId": "5d0l9vdjiq2b0u69gt4qhsqcbo",
+        "AppWebDomain": "prod-hapre.auth.ap-northeast-1.amazoncognito.com",
         "TokenScopesArray": [
             "email",
             "openid",
             "profile"
         ],
-        "RedirectUriSignIn": "https://dev-hyper.flow.tw/callback",
-        "RedirectUriSignOut": "https://dev-hyper.flow.tw/",
+        "RedirectUriSignIn": "https://lumos.flow.tw/callback",
+        "RedirectUriSignOut": "https://lumos.flow.tw/",
         "IdentityProvider": "Google"
     }
 }

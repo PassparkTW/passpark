@@ -1,20 +1,18 @@
 import { CognitoAuth } from "amazon-cognito-auth-js"
 import * as DevConfig from '../config/config.dev.json'
 import * as ProdConfig from '../config/config.prod.json'
+import * as BetaConfig from '../config/config.beta.json'
 
-const config = process.env.NODE_ENV === 'production' ? ProdConfig : DevConfig
+let config = ProdConfig
+if (process.env.NODE_ENV === 'dev') {
+    config = DevConfig
+}
+if (process.env.NODE_ENV === 'beta') {
+    config = BetaConfig
+}
+
+
 const authData = config.AUTH_DATA
-
-// export const parseCredentialsFromHash = () => {
-//     const hash = window.location.hash.slice(1)
-//     const params = new URLSearchParams(hash)
-//     const accessToken = params.get('access_token')
-//     const idToken = params.get('id_token')
-//     const refreshToken = params.get('refresh_token')
-//     const expiresIn = params.get('expires_in')
-//     const tokenType = params.get('token_type')
-//
-// }
 
 export const getAuthHandler = ({ onSuccess, onFailure }) => {
     const auth = new CognitoAuth(authData)

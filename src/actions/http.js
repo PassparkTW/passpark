@@ -1,8 +1,5 @@
-const HOST = 'https://g0zu4yxwo8.execute-api.ap-northeast-1.amazonaws.com/prod'
-// const HOST = 'http://localhost:8080'
-
 export const getUserData = (code) => {
-  return fetch(`${HOST}/auth/callback?code=${code}`, {
+  return fetch(`${process.env.API_URL}/auth/callback?code=${code}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -13,7 +10,7 @@ export const getUserData = (code) => {
 }
 
 export const submitSurvey = (reason) => {
-  return fetch(`${HOST}/survey`, {
+  return fetch(`${process.env.API_URL}/survey`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -26,7 +23,7 @@ export const submitSurvey = (reason) => {
 }
 
 export const getArticle = ({ articleId }) => {
-  return fetch(`${HOST}/article/${articleId}`, {
+  return fetch(`${process.env.API_URL}/article/${articleId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -36,7 +33,7 @@ export const getArticle = ({ articleId }) => {
 }
 
 export const generateImage = (data) => {
-  return fetch(`${HOST}/generate`, {
+  return fetch(`${process.env.API_URL}/generate`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -49,7 +46,7 @@ export const generateImage = (data) => {
 }
 
 export const getImages = (page) => {
-  return fetch(`${HOST}/articles?page=${page}`, {
+  return fetch(`${process.env.API_URL}/articles?page=${page}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'

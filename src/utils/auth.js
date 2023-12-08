@@ -4,10 +4,10 @@ import * as ProdConfig from '../config/config.prod.json'
 import * as BetaConfig from '../config/config.beta.json'
 
 let config = ProdConfig
-if (process.env.NODE_ENV === 'dev') {
+if (process.env.REACT_APP_ENV === 'local') {
     config = DevConfig
 }
-if (process.env.NODE_ENV === 'beta') {
+if (process.env.REACT_APP_ENV === 'beta') {
     config = BetaConfig
 }
 

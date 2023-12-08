@@ -1,5 +1,5 @@
 export const getUserData = (code) => {
-  return fetch(`${process.env.API_URL}/auth/callback?code=${code}`, {
+  return fetch(`${process.env.REACT_APP_API_URL}/auth/callback?code=${code}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -10,7 +10,7 @@ export const getUserData = (code) => {
 }
 
 export const submitSurvey = (reason) => {
-  return fetch(`${process.env.API_URL}/survey`, {
+  return fetch(`${process.env.REACT_APP_API_URL}/survey`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ export const submitSurvey = (reason) => {
 }
 
 export const getArticle = ({ articleId }) => {
-  return fetch(`${process.env.API_URL}/article/${articleId}`, {
+  return fetch(`${process.env.REACT_APP_API_URL}/article/${articleId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ export const getArticle = ({ articleId }) => {
 }
 
 export const generateImage = (data) => {
-  return fetch(`${process.env.API_URL}/generate`, {
+  return fetch(`${process.env.REACT_APP_API_URL}/generate`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export const generateImage = (data) => {
 }
 
 export const getImages = (page) => {
-  return fetch(`${process.env.API_URL}/articles?page=${page}`, {
+  return fetch(`${process.env.REACT_APP_API_URL}/articles?page=${page}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'

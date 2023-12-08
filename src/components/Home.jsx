@@ -10,7 +10,7 @@ import copy from 'copy-to-clipboard';
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const HOST = 'https://dev-hyper.flow.tw/';
+const HOST = process.env.REACT_APP_HOST_URL;
 
 const HomeContainer = styled.div`
   display: flex;

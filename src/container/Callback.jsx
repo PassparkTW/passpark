@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getUserData } from '../actions/actions';
+import { authCallback } from '../actions/actions';
 import {useNavigate} from 'react-router-dom';
 import { useUser } from '../actions/store/auth';
 const Callback = () => {
@@ -11,7 +11,7 @@ const Callback = () => {
     const code = params.get('code');
     (async () => {
       if (code) {
-        const { statusCode, data } = await getUserData({ code })
+        const { statusCode, data } = await authCallback({ code })
         if (statusCode >= 300) {
           return
         }

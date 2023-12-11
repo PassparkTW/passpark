@@ -1,13 +1,24 @@
 import * as HTTP from './http'
 
-export const getUserData = async ({ code }) => {
-  const res = await HTTP.getUserData(code)
+export const authCallback = async ({ code }) => {
+  const res = await HTTP.authCallback(code)
   const statusCode = res.status
   const data = await res.json()
   if (statusCode === 201 || statusCode === 200) {
     localStorage.setItem('token', data.access_token)
   }
   return { statusCode, data }
+}
+
+export const getUserData = async () => {
+  const res = await HTTP.getUserData()
+  const statusCode = res.status
+  if (statusCode === 401) {
+    localStorage.removeItem('token')
+    return null
+  }
+  const data = await res.json()
+  return data
 }
 
 

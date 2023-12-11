@@ -1,8 +1,20 @@
-export const getUserData = (code) => {
+export const authCallback = (code) => {
   return fetch(`${process.env.REACT_APP_API_URL}/auth/callback?code=${code}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
+    },
+    credentials: 'include',
+    mode: 'cors'
+  })
+}
+
+export const getUserData = () => {
+  return fetch(`${process.env.REACT_APP_API_URL}/userInfo`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
     },
     credentials: 'include',
     mode: 'cors'

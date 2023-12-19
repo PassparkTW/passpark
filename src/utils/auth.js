@@ -1,5 +1,5 @@
 import { CognitoAuth } from "amazon-cognito-auth-js"
-import * as DevConfig from '../config/config.dev.json'
+import * as DevConfig from '../config/config.development.json'
 import * as ProdConfig from '../config/config.prod.json'
 import * as BetaConfig from '../config/config.beta.json'
 

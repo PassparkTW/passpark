@@ -3,28 +3,25 @@ import React, { useState } from 'react';
 import Register from "../components/Register";
 import {submitSurvey} from "../actions/actions";
 import {useNavigate} from "react-router-dom";
+import {useUser} from "../actions/store/auth";
 
 
 const RegisterImpl = () => {
-    const [reason, setReason] = useState('')
+  const {user, login} = useUser();
   const navigate = useNavigate();
-  const onSubmit = () => {
+  const onSubmit = (form) => {
     (async() => {
-      const { statusCode } = await submitSurvey({ reason })
+      const { statusCode } = await submitSurvey(form)
       if (statusCode >= 300) {
         return
       }
+      login({...user, isDone: true})
       navigate('/')
-
     })()
   }
 
     return (
       <Register
-        reason={reason}
-        onReasonChange={(e) => {
-          setReason(e.target.value)
-        }}
         onSubmit={onSubmit}
       />
     );

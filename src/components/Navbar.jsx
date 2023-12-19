@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import {Box, styled} from "@mui/system";
 import { DarkBackgroundColor, DarkborderColor, FontWhiteColor, DarkButtonColor, ButtonBorderColor } from "../settings/color"; 
 import { Link } from "react-router-dom";
+import SurveyDialog from "./Dialog/SurveyDialog";
 
 
 const StyledToolbar = styled(Toolbar)({
@@ -44,16 +45,18 @@ const ToolContainer = styled(Box)`
 `;
 
 
-const Navbar = ({ username }) => {
+const Navbar = ({ username, onLogout, openSurvey, onCloseSurvey }) => {
   return (
     <StyledAppBar position="static">
+      <SurveyDialog open={openSurvey} onClose={onCloseSurvey}/>
       <StyledToolbar>
         <Link to="/">
           <StyledTypography variant="h6">
-              易讀圖片製作
+            圖易通
           </StyledTypography>
         </Link>
         <ToolContainer>
+
           {
             username &&
             <Link to="/create">
@@ -61,6 +64,12 @@ const Navbar = ({ username }) => {
                 製作
               </StyledButton>
             </Link>
+          }
+          {
+            username &&
+            <StyledButton color="inherit" onClick={onLogout}>
+              登出
+            </StyledButton>
           }
           {
             username ||

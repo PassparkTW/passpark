@@ -1,5 +1,7 @@
+import config from '../config'
+
 export const authCallback = (code) => {
-  return fetch(`${process.env.REACT_APP_API_URL}/auth/callback?code=${code}`, {
+  return fetch(`${config.API_ENDPOINT}/auth/callback?code=${code}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -10,7 +12,7 @@ export const authCallback = (code) => {
 }
 
 export const getUserData = () => {
-  return fetch(`${process.env.REACT_APP_API_URL}/userInfo`, {
+  return fetch(`${config.API_ENDPOINT}/userInfo`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -21,21 +23,21 @@ export const getUserData = () => {
   })
 }
 
-export const submitSurvey = (reason) => {
-  return fetch(`${process.env.REACT_APP_API_URL}/survey`, {
+export const submitSurvey = (form) => {
+  return fetch(`${config.API_ENDPOINT}/survey`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     },
-    body: JSON.stringify({ reason }),
+    body: JSON.stringify(form),
     credentials: 'include',
     mode: 'cors'
   })
 }
 
 export const getArticle = ({ articleId }) => {
-  return fetch(`${process.env.REACT_APP_API_URL}/article/${articleId}`, {
+  return fetch(`${config.API_ENDPOINT}/article/${articleId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -45,7 +47,7 @@ export const getArticle = ({ articleId }) => {
 }
 
 export const generateImage = (data) => {
-  return fetch(`${process.env.REACT_APP_API_URL}/generate`, {
+  return fetch(`${config.API_ENDPOINT}/generate`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -58,7 +60,7 @@ export const generateImage = (data) => {
 }
 
 export const getImages = (page) => {
-  return fetch(`${process.env.REACT_APP_API_URL}/articles?page=${page}`, {
+  return fetch(`${config.API_ENDPOINT}/articles?page=${page}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'

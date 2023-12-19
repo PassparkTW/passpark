@@ -1,15 +1,13 @@
 // src/components/Register.js
 import React from 'react';
-import { Button, TextField } from '@mui/material';
+import {Button, FormControl, InputLabel, MenuItem, Select, TextField} from '@mui/material';
 import styled from 'styled-components'
-import { ButtonBorderColor } from '../settings/color';
 
 const RegisterPanel = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid ${ButtonBorderColor};
     padding: 2rem;
     margin: 2rem;
     border-radius: 15px;
@@ -24,8 +22,6 @@ const RegisterStatement = styled.span`
 `
 
 const StyledTextField = styled(TextField)`
-  color: #F3F0E9;
-  border: 1px solid #D3D3D3 !important;
   border-radius: 15px !important;
   width: 40vw;
   margin: 1rem 0 !important;
@@ -44,32 +40,126 @@ const RegisterButton = ({ onClick }) => {
     )
 }
 
-const CustomizeTextField = ({ value, onChange }) => (
+const ReasonField = ({ reason, onChange }) => (
   <StyledTextField
     multiline
-    value={value}
-    onChange={onChange}
+    value={reason}
+    onChange={(e) => onChange(e.target.value)}
     rows={4} // 可以调整行数
-    placeholder="你是怎麼知道這個服務的呢？"
-    sx={{
-      textarea: {
-        color: '#FFF8DC',
-      }, // 设置文本颜色为白色
-      // 你也可以在这里添加其他样式，如背景色、边框等
-    }}
+    placeholder={"為什麼想要使用此工具呢？（歡迎讓我們多了解，以發展適合您的工具）"}
   />
 );
 
-const Register = ({ reason, onReasonChange, onSubmit }) => {
-    return (
-            <RegisterPanel>
-              <CustomizeTextField
-                value={reason}
-                onChange={onReasonChange}
-              />
-              <RegisterButton onClick={onSubmit}/>
-            </RegisterPanel>
-    );
+const NameField = ({ name, onNameChange, error }) => (
+  <StyledTextField
+    value={name}
+    onChange={(e) => onNameChange(e.target.value)}
+    placeholder={"您的姓名"}
+    error={error.name}
+    helperText={error.name ? "姓名未填寫" : null}
+  />
+);
+
+const CareerField = ({ career, onCareer }) => (
+  <StyledTextField
+    value={career}
+    onChange={(e) => onCareer(e.target.value)}
+    placeholder={"您目前的職業是"}
+  />
+);
+
+const GenderSelection = ({ gender, onGender }) => (
+  <FormControl fullWidth margin="normal">
+    <InputLabel id="relationship-label">您的性別</InputLabel>
+    <Select
+      labelId="relationship-label"
+      label="您的性別"
+      value={gender}
+      onChange={(e) => onGender(e.target.value)}
+    >
+      <MenuItem value="male">生理男</MenuItem>
+      <MenuItem value="female">生理女</MenuItem>
+      <MenuItem value="other">其他</MenuItem>
+    </Select>
+  </FormControl>
+)
+
+const AgeSelection = ({ age, onAge }) => (
+  <FormControl fullWidth margin="normal">
+    <InputLabel id="relationship-label">您的年齡落在哪個區間</InputLabel>
+    <Select
+      labelId="relationship-label"
+      label="您的年齡落在哪個區間"
+      value={age}
+      onChange={(e) => onAge(e.target.value)}
+    >
+      <MenuItem value="20">20-30歲</MenuItem>
+      <MenuItem value="30">31-40歲</MenuItem>
+      <MenuItem value="40">41-50歲</MenuItem>
+      <MenuItem value="50">51-60歲</MenuItem>
+      <MenuItem value="60">60歲(含)以上</MenuItem>
+    </Select>
+  </FormControl>
+)
+
+const Register = ({ onSubmit }) => {
+  const [gender, setGender] = React.useState('');
+  const [name, setName] = React.useState('');
+  const [age, setAge] = React.useState('');
+  const [reason, setReason] = React.useState('');
+  const [career, setCareer] = React.useState('');
+  const [error, setError] = React.useState({
+    career: false,
+    reason: false,
+    name: false,
+    age: false,
+    gender: false
+  });
+  const checkError = () => {
+    const err = {}
+    err.career = !career;
+    err.reason = !reason;
+    err.name = !name;
+    err.gender = !gender;
+    err.age = !age;
+    setError(err);
+  }
+
+  const onSubmitClick = () => {
+    checkError()
+    if (error.name) {
+      return
+    } else {
+      const form = {name, age, gender, career, reason}
+      onSubmit(form)
+    }
+  }
+  return (
+    <RegisterPanel>
+      <NameField
+        name={name}
+        onNameChange={setName}
+        error={error}
+      />
+      <GenderSelection
+        gender={gender}
+        onGender={setGender}
+      />
+      <AgeSelection
+        age={age}
+        onAge={setAge}
+      />
+      <CareerField
+        career={career}
+        onCareer={setCareer}
+      />
+      <ReasonField
+        value={reason}
+        onChange={setReason}
+      />
+      <RegisterButton onClick={onSubmitClick}/>
+    </RegisterPanel>
+  );
 
 }
 

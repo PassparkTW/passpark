@@ -9,8 +9,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import copy from 'copy-to-clipboard';
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-const HOST = process.env.REACT_APP_HOST_URL;
+import config from '../config';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -61,7 +60,7 @@ const Gallery = ({ hasMore, imageItems, moreImage }) => {
               title={`關鍵字:${item.keyword}`}
               subtitle={`@${item.author_name}`}
               actionIcon={
-                <IconButton onClick={() => handleShare(`${HOST}/article/${item.id}`)}>
+                <IconButton onClick={() => handleShare(`${config.HOST_URL}/article/${item.id}`)}>
                   <ShareIcon />
                 </IconButton>
               }

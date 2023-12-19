@@ -15,7 +15,7 @@ const Callback = () => {
         if (statusCode >= 300) {
           return
         }
-        login(data)
+        login({...data, isDone: statusCode === 200})
         if (statusCode === 200) {
           navigate('/')
           return

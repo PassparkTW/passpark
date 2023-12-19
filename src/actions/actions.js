@@ -22,8 +22,8 @@ export const getUserData = async () => {
 }
 
 
-export const submitSurvey = async ({ reason }) => {
-  const res = await HTTP.submitSurvey(reason)
+export const submitSurvey = async (form) => {
+  const res = await HTTP.submitSurvey(form)
   return res.status
 }
 
@@ -40,8 +40,8 @@ export const getArticle = async ({ articleId }) => {
 export const generateImage = async (data) => {
   const res = await HTTP.generateImage(data)
   const statusCode = res.status
-  const image = await res.json()
-  return { statusCode, image }
+  const { article_id: articleId, task_id: taskId, need_survey: needSurvey } = await res.json()
+  return { statusCode, articleId, taskId, needSurvey }
 }
 
 export const getImages = async (page) => {

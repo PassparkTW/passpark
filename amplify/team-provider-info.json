@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-haper-dev-143426-authRole",
+      "UnauthRoleArn": "arn:aws:iam::843456404290:role/amplify-haper-dev-143426-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::843456404290:role/amplify-haper-dev-143426-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-haper-dev-143426-deployment",
+      "UnauthRoleName": "amplify-haper-dev-143426-unauthRole",
+      "StackName": "amplify-haper-dev-143426",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:843456404290:stack/amplify-haper-dev-143426/d185a250-a3b8-11ee-8718-06849a88a8ff",
+      "AmplifyAppId": "d3cpaf9ru6yebz"
+    }
+  }
+}

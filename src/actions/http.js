@@ -1,5 +1,17 @@
 import config from '../config'
 
+
+export const getTemplate = () => {
+  return fetch(`${config.API_ENDPOINT}/templates`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include',
+    mode: 'cors'
+  })
+
+}
 export const authCallback = (code) => {
   return fetch(`${config.API_ENDPOINT}/auth/callback?code=${code}`, {
     method: 'GET',

@@ -10,5 +10,8 @@
         "RedirectUriSignIn": "https://dev-hyper.flow.tw/callback",
         "RedirectUriSignOut": "https://dev-hyper.flow.tw/",
         "IdentityProvider": "Google"
-    }
+    },
+    "API_ENDPOINT": "https://g0zu4yxwo8.execute-api.ap-northeast-1.amazonaws.com/prod/",
+    "HOST_URL": "https://dev-hyper.flow.tw",
+    "WS_ENDPOINT": "wss://psx97lcw95.execute-api.ap-northeast-1.amazonaws.com/dev/"
 }

@@ -14,6 +14,11 @@ if (process.env.REACT_APP_ENV === 'beta') {
 
 const authData = config.AUTH_DATA
 
+export const signOut = () => {
+    const auth = new CognitoAuth(authData)
+    auth.signOut()
+}
+
 export const getAuthHandler = ({ onSuccess, onFailure }) => {
     const auth = new CognitoAuth(authData)
     auth.userhandler = {

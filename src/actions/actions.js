@@ -50,6 +50,12 @@ export const getImages = async (page) => {
   return articles
 }
 
+export const getTemplates = async () => {
+  const res = await HTTP.getTemplate()
+  const templates = await res.json()
+  return templates
+}
+
 export const doLoginSuccess = (payload) => ({
   type: 'SET_USER_DATA',
   payload,

@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
+import {signOut} from "../../utils/auth";
 
 const UserContext = createContext();
 
@@ -13,6 +14,7 @@ export const UserProvider = ({ children }) => {
 
   const logout = () => {
     setUser({});
+    signOut();
     localStorage.removeItem('token');
   };
 

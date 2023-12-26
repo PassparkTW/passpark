@@ -126,8 +126,9 @@ const Register = ({ onSubmit }) => {
   }
 
   const onSubmitClick = () => {
+
     checkError()
-    if (error.name) {
+    if (error.name || name === '' ) {
       return
     } else {
       const form = {name, age, gender, career, reason}
@@ -157,7 +158,10 @@ const Register = ({ onSubmit }) => {
         value={reason}
         onChange={setReason}
       />
-      <RegisterButton onClick={onSubmitClick}/>
+      <RegisterButton onClick={(e) => {
+        e.preventDefault()
+        onSubmitClick()
+      }}/>
     </RegisterPanel>
   );
 

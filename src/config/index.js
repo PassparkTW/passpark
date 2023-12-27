@@ -1,3 +1,4 @@
-import beta from './config.prod.json';
-export default beta;
+import devConfig from './config.development.json';
+
+export default devConfig;
 

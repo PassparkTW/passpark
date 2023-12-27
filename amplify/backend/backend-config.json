@@ -1,1 +1,63 @@
-{}
+{
+  "api": {
+    "haper": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            },
+            "authenticationType": "API_KEY"
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "auth": {
+    "haper6b05dcc8": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_haper6b05dcc8_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "haper6b05dcc8"
+        }
+      ]
+    },
+    "AMPLIFY_auth_haper6b05dcc8_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "haper6b05dcc8"
+        }
+      ]
+    },
+    "AMPLIFY_auth_haper6b05dcc8_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "haper6b05dcc8"
+        }
+      ]
+    },
+    "AMPLIFY_auth_haper6b05dcc8_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "haper6b05dcc8"
+        }
+      ]
+    }
+  }
+}

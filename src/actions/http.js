@@ -1,8 +1,7 @@
 import config from '../config'
-
-
+import { currentSession } from '../utils/auth'
 export const getTemplate = () => {
-  return fetch(`${config.API_ENDPOINT}/templates`, {
+  return fetch(`${process.env.REACT_APP_API_HOST}/templates`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -13,7 +12,7 @@ export const getTemplate = () => {
 
 }
 export const authCallback = (code) => {
-  return fetch(`${config.API_ENDPOINT}/auth/callback?code=${code}`, {
+  return fetch(`${process.env.REACT_APP_API_HOST}/auth/callback?code=${code}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -23,24 +22,26 @@ export const authCallback = (code) => {
   })
 }
 
-export const getUserData = () => {
-  return fetch(`${config.API_ENDPOINT}/userInfo`, {
+export const getUserData = async () => {
+  const { accessToken } = await currentSession()
+  return fetch(`${process.env.REACT_APP_API_HOST}/userInfo`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      'Authorization': `Bearer ${accessToken}`
     },
     credentials: 'include',
     mode: 'cors'
   })
 }
 
-export const submitSurvey = (form) => {
-  return fetch(`${config.API_ENDPOINT}/survey`, {
+export const submitSurvey = async (form) => {
+  const { accessToken } = await currentSession()
+  return fetch(`${process.env.REACT_APP_API_HOST}/survey`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      'Authorization': `Bearer ${accessToken}`
     },
     body: JSON.stringify(form),
     credentials: 'include',
@@ -49,7 +50,7 @@ export const submitSurvey = (form) => {
 }
 
 export const getArticle = ({ articleId }) => {
-  return fetch(`${config.API_ENDPOINT}/article/${articleId}`, {
+  return fetch(`${process.env.REACT_APP_API_HOST}/article/${articleId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -58,12 +59,13 @@ export const getArticle = ({ articleId }) => {
   })
 }
 
-export const generateImage = (data) => {
-  return fetch(`${config.API_ENDPOINT}/generate`, {
+export const generateImage = async (data) => {
+  const { accessToken } = await currentSession()
+  return fetch(`${process.env.REACT_APP_API_HOST}/generate`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      'Authorization': `Bearer ${accessToken}`
     },
     body: JSON.stringify(data),
     credentials: 'include',
@@ -72,7 +74,7 @@ export const generateImage = (data) => {
 }
 
 export const getImages = (page) => {
-  return fetch(`${config.API_ENDPOINT}/articles?page=${page}`, {
+  return fetch(`${process.env.REACT_APP_API_HOST}/articles?page=${page}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'

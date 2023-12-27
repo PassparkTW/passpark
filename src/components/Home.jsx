@@ -60,7 +60,7 @@ const Gallery = ({ hasMore, imageItems, moreImage }) => {
               title={`關鍵字:${item.keyword}`}
               subtitle={`@${item.author_name}`}
               actionIcon={
-                <IconButton onClick={() => handleShare(`${config.HOST_URL}/article/${item.id}`)}>
+                <IconButton onClick={() => handleShare(`${window.location.hostname}/article/${item.id}`)}>
                   <ShareIcon />
                 </IconButton>
               }

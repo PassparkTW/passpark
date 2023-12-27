@@ -1,56 +1,35 @@
-import { CognitoAuth } from "amazon-cognito-auth-js"
-import * as DevConfig from '../config/config.development.json'
-import * as ProdConfig from '../config/config.prod.json'
-import * as BetaConfig from '../config/config.beta.json'
+import { signOut, getCurrentUser, fetchAuthSession, fetchUserAttributes } from 'aws-amplify/auth';
 
-let config = ProdConfig
-if (process.env.REACT_APP_ENV === 'local') {
-    config = DevConfig
-}
-if (process.env.REACT_APP_ENV === 'beta') {
-    config = BetaConfig
-}
-
-
-const authData = config.AUTH_DATA
-
-export const signOut = () => {
-    const auth = new CognitoAuth(authData)
-    auth.signOut()
-}
-
-export const getAuthHandler = ({ onSuccess, onFailure }) => {
-    const auth = new CognitoAuth(authData)
-    auth.userhandler = {
-        onSuccess: (result) => {
-            if (onSuccess) {
-                onSuccess(result)
-                return
-            }
-            console.log('登录成功', result);
-            // 处理登录成功
-        },
-        onFailure: (err) => {
-            if (onFailure) {
-                onFailure(err)
-                return
-            }
-            console.error('登录失败', err);
-            // 处理登录失败
+export const currentSession = async () => {
+    try {
+        const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
+        if (accessToken && idToken) {
+            return { accessToken, idToken };
         }
-    };
-    return auth
+    } catch (err) {
+        console.error(err);
+    }
 }
 
-export const refreachToken = (auth) => {
-    // Check if token is expired
-    return auth.getSignInUserSession().refreshSession(auth.refreshToken, (err, session) => {
-        if (err) {
-            console.error('刷新token失败', err);
-            // 处理刷新token失败
-            return
-        }
-        console.log('刷新token成功', session);
-        // 处理刷新token成功
-    })
+export const currentAuthenticatedUser = async () => {
+    try {
+        const data = await getCurrentUser();
+        return data;
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export const handleFetchUserAttributes = async ()=> {
+    try {
+        const userAttributes = await fetchUserAttributes();
+        return userAttributes
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const onSignOut = async () => {
+    await signOut();
+    localStorage.removeItem('token');
 }

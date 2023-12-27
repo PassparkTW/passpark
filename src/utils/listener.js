@@ -1,8 +1,5 @@
-import config from '../config';
-
-
 export const createSocket = ({ onOpen, onMessage }) => {
-  const socket = new WebSocket(config.WS_ENDPOINT);
+  const socket = new WebSocket(process.env.REACT_APP_WS_ENDPOINT);
   socket.onopen = () => {
     onOpen();
   }

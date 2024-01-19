@@ -1,52 +1,10 @@
 {
   "api": {},
-  "auth": {
-    "haper6b05dcc8": {
-      "customAuth": false,
-      "dependsOn": [],
-      "providerPlugin": "awscloudformation",
-      "service": "Cognito",
-      "serviceType": "imported"
-    }
-  },
+  "auth": {},
   "hosting": {
     "S3AndCloudFront": {
       "providerPlugin": "awscloudformation",
       "service": "S3AndCloudFront"
-    }
-  },
-  "parameters": {
-    "AMPLIFY_auth_haper6b05dcc8_nativeClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "haper6b05dcc8"
-        }
-      ]
-    },
-    "AMPLIFY_auth_haper6b05dcc8_userPoolId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "haper6b05dcc8"
-        }
-      ]
-    },
-    "AMPLIFY_auth_haper6b05dcc8_userPoolName": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "haper6b05dcc8"
-        }
-      ]
-    },
-    "AMPLIFY_auth_haper6b05dcc8_webClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "haper6b05dcc8"
-        }
-      ]
     }
   }
 }

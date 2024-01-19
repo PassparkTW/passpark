@@ -13,12 +13,7 @@
     },
     "categories": {
       "auth": {
-        "haper6b05dcc8": {
-          "userPoolId": "ap-northeast-1_tTSn4T0Sn",
-          "userPoolName": "dev_hapre_user_pool",
-          "webClientId": "1outs54s4f88cgj8il5e4c89e8",
-          "nativeClientId": "1outs54s4f88cgj8il5e4c89e8"
-        }
+        "haper99c2b0a0": {}
       },
       "hosting": {
         "S3AndCloudFront": {}

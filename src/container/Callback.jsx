@@ -5,27 +5,30 @@ import { useUser } from '../actions/store/auth';
 const Callback = () => {
   const { login } = useUser();
   const navigate = useNavigate();
-  useEffect(() => {
-    const search = window.location.search
-    const params = new URLSearchParams(search)
-    const code = params.get('code');
-    (async () => {
-      if (code) {
-        const { statusCode, data } = await authCallback({ code })
-        if (statusCode >= 300) {
-          return
-        }
-        login({...data, isDone: statusCode === 200})
-        if (statusCode === 200) {
-          navigate('/')
-          return
-        }
-        navigate('/register')
-      } else {
+  // useEffect(() => {
+  //   const search = window.location.search
+  //   const params = new URLSearchParams(search)
+  //   const code = params.get('code');
+  //   (async () => {
+  //     if (code) {
+  //       const { statusCode, data } = await authCallback({ code })
+  //       if (statusCode >= 300) {
+  //         return
+  //       }
+  //       login({...data, isDone: statusCode === 200})
+  //       if (statusCode === 200) {
+  //         navigate('/')
+  //         return
+  //       }
+  //       navigate('/register')
+  //     } else {
 
-      }
-    })()
-  })
+  //     }
+  //   })()
+  // })
+  useEffect(() => {
+    navigate('/')
+  }, [])  
   return (
     <div>登录处理中...</div>
   )

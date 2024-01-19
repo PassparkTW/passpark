@@ -50,6 +50,12 @@ export const getImages = async (page) => {
   return articles
 }
 
+export const getImageHistory = async (page) => {
+  const res = await HTTP.getImageHistory(page)
+  const { articles } = await res.json()
+  return articles
+}
+
 export const getTemplates = async () => {
   const res = await HTTP.getTemplate()
   const templates = await res.json()

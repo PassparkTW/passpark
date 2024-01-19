@@ -72,7 +72,10 @@ const Navbar = ({ username, onLogout, openSurvey, onCloseSurvey }) => {
             </StyledButton>
           }
           {
-            username ||
+            username
+            && <Link to="/history">
+                {username}
+            </Link> ||
             <Link to="/login">
               <StyledButton color="inherit">
                 登入

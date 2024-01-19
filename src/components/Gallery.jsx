@@ -9,9 +9,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import copy from 'copy-to-clipboard';
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import config from '../config';
 
-const HomeContainer = styled.div`
+const GalleryContainer = styled.div`
   display: flex;
   height: auto;
   width: 100%;
@@ -33,21 +32,21 @@ const Gallery = ({ hasMore, imageItems, moreImage }) => {
   };
 
   return (
-    <HomeContainer>
-    <InfiniteScroll
-      dataLength={imageItems.length}
-      next={moreImage}
-      hasMore={hasMore}
-      loader={<h4>Loading...</h4>}
-      style={{
-        display: 'flex',
-        width: '100%',
-        flexDirection: 'column',
-        alignItems: 'center',
-        overflow: 'hidden',
-      }}
-    >
-      <ImageList sx={{ width: '40%', height: 'auto' }} cols={3}>
+    <GalleryContainer>
+      <InfiniteScroll
+        dataLength={imageItems.length}
+        next={moreImage}
+        hasMore={hasMore}
+        loader={<h4>Loading...</h4>}
+        style={{
+          display: 'flex',
+          width: '100%',
+          flexDirection: 'column',
+          alignItems: 'center',
+          overflow: 'hidden',
+        }}
+      >
+      <ImageList sx={{ width: '60%', height: 'auto' }} cols={5}>
         {imageItems.map((item, index) => (
           <ImageListItem key={item.id}>
             <img
@@ -68,14 +67,14 @@ const Gallery = ({ hasMore, imageItems, moreImage }) => {
           </ImageListItem>
         ))}
       </ImageList>
-    </InfiniteScroll>
-  <Snackbar
-    open={open}
-    autoHideDuration={3000}
-    onClose={handleClose}
-    message="連結已複製"
-  />
-    </HomeContainer>
+      </InfiniteScroll>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        message="連結已複製"
+      />
+    </GalleryContainer>
 );
 };
 

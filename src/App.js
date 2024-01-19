@@ -4,6 +4,7 @@ import Login from './container/Login'
 import Callback from './container/Callback'
 import Homepage from './container/Homepage'
 import Article from './container/Article'
+import ArticleHistory from "./container/ArticleHistory";
 import GenerateImage from './container/GenerateImage'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -63,6 +64,7 @@ function App() {
                   <Route path="/callback" element={<Callback />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/article/:articleId" element={<Article />} />
+                  <Route path="/history" element={<ArticleHistory />} />
                   <Route path="create" element={<GenerateImage />} />
                 </Routes>
               </Container>

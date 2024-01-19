@@ -82,3 +82,15 @@ export const getImages = (page) => {
     mode: 'cors'
   })
 }
+
+export const getImageHistory = async (page) => {
+  const { accessToken } = await currentSession()
+  return fetch(`${process.env.REACT_APP_API_HOST}/user/article?page=${page}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`
+    },
+    mode: 'cors'
+  })
+}

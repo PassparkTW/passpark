@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import Home from '../components/Home'
+import Gallery from '../components/Gallery'
 import { getImages } from '../actions/actions'
 
 const moreImages = async ({ page, setPage, setHasMore, setImageItems }) => {
@@ -20,7 +20,7 @@ const Homepage = () => {
         moreImages({ page, setPage, setHasMore, setImageItems })
     }, [])
     return (
-            <Home imageItems={imageItems} hasMore={hasMore} moreImage={() => {
+            <Gallery imageItems={imageItems} hasMore={hasMore} moreImage={() => {
                 moreImages({ page, setPage, setHasMore, setImageItems })
             }} />
     )

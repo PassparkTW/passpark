@@ -7,7 +7,7 @@
             "openid",
             "profile"
         ],
-        "RedirectUriSignIn": "https://dev-hyper.flow.tw/callback",
+        "RedirectUriSignIn": "https://dev-hyper.flow.tw/",
         "RedirectUriSignOut": "https://dev-hyper.flow.tw/",
         "IdentityProvider": "Google"
     },

@@ -32,10 +32,10 @@ const GenerateImageImpl = () => {
       setTemplates(templates);
     })()
   }, [])
-  const onSubmit = (prompt) => {
+  const onSubmit = ({ tags, prompt }) => {
     setLoading(true);
     (async () => {
-      const { taskId, articleId, statusCode, needSurvey } = await generateImage({ prompt });
+      const { taskId, articleId, statusCode, needSurvey } = await generateImage({ prompt, tags: tags.split(',') });
       login({...user, needSurvey})
       if (statusCode === 202) {
         const eventListener = createSocket({ onMessage: (msg) => {

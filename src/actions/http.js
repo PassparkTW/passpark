@@ -1,4 +1,3 @@
-import config from '../config'
 import { currentSession } from '../utils/auth'
 export const getTemplate = () => {
   return fetch(`${process.env.REACT_APP_API_HOST}/templates`, {

@@ -21,21 +21,6 @@ import Register from "./container/Register";
 import Navbar from "./container/Navbar";
 import styled from "styled-components";
 
-// function App() {
-//   const router = createBrowserRouter([
-//     { path: '/', element: <Homepage /> },
-//     { path: '/login', element: <Login /> },
-//     { path: '/callback', element: <Callback /> },
-//     { path: '/register', element: <Register /> },
-//   ]);
-//   return (
-//     <div className="App">
-//       <UserDataProvider>
-//         <RouterProvider router={router} />
-//       </UserDataProvider>
-//     </div>
-//   );
-// }
 const Container = styled.div`
   display: flex;
   flex: 1;

@@ -11,7 +11,7 @@ const GenerateImageImpl = () => {
   const [loading, setLoading] = useState(false);
   const [listener, setListener] = useState(null);
   const navigate = useNavigate();
-  const [templates, setTemplates] = useState([]);
+  
   const { login, user } = useUser();
   useEffect(() => {
     console.log('user', user)
@@ -25,12 +25,6 @@ const GenerateImageImpl = () => {
       navigate('/register')
       return
     }
-  }, [])
-  useEffect(() => {
-    (async () => {
-      const templates = await getTemplates();
-      setTemplates(templates);
-    })()
   }, [])
   const onSubmit = ({ tags, prompt }) => {
     setLoading(true);
@@ -61,7 +55,7 @@ const GenerateImageImpl = () => {
     })()
   }
   return (
-    <GenerateImage onSubmit={onSubmit} loading={loading} templates={templates} />
+    <GenerateImage onSubmit={onSubmit} loading={loading} />
   );
 
 }

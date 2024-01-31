@@ -156,7 +156,7 @@ const Tags = ({ tags }) => {
       {
         tags.map(tag => {
           console.log(tag)
-          return <Chip key={tag.name} label={tag.name}/>
+          return <Chip key={tag} label={tag}/>
         })
       }
     </Row>

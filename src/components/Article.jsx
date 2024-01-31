@@ -155,13 +155,13 @@ const Article = ({ article }) => {
       <ImageContainer>
         <img
           style={{ maxWidth: "100%", maxHeight: "100%" }}
-          src={article.Url}
-          alt={article.Keyword}
+          src={article.imageUrl}
+          alt={article.keyword}
           />
       </ImageContainer>
       <AuthorContainer>
-        <AuthorMeta username={article.AuthorName} datetime={new Date(article.CreatedAt).toDateString()} />
-        <ToolInfos toolName={article.Tool} articleStyle={article.Style} keyword={article.Keyword} />
+        <AuthorMeta username={article.authorName} datetime={article.date} />
+        <ToolInfos toolName="卡通插圖易讀產生" articleStyle="卡通插畫" keyword={article.keyword} />
       </AuthorContainer>
     </ArticleContainer>
   )

@@ -73,7 +73,7 @@ export const generateImage = async (data) => {
 }
 
 export const getImages = (page) => {
-  return fetch(`${process.env.REACT_APP_API_HOST}/articles?page=${page}`, {
+  return fetch(`${process.env.REACT_APP_API_HOST}/articles?${page}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -83,8 +83,9 @@ export const getImages = (page) => {
 }
 
 export const getImageHistory = async (page) => {
+  console.log("🚀 ~ getImageHistory ~ page:", page)
   const { accessToken } = await currentSession()
-  return fetch(`${process.env.REACT_APP_API_HOST}/user/article?page=${page}`, {
+  return fetch(`${process.env.REACT_APP_API_HOST}/user/article?${page}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

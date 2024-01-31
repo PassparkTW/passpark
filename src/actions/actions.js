@@ -1,4 +1,23 @@
 import * as HTTP from './http'
+import { updateUserAttributes } from 'aws-amplify/auth';
+
+// export const submitSurvey = async (form) => {
+//   const res = await HTTP.submitSurvey(form)
+//   return res.status
+// }
+
+export const submitSurvey = async ({name, age, gender, career, reason}) => {
+  await updateUserAttributes({
+    userAttributes: {
+      "custom:age":age,
+      "custom:career": career,
+      name,
+      "custom:gender": gender,
+      "custom:isDoneSurvey": "true",
+      "custom:reason": reason || "",
+    },
+  });
+}
 
 export const authCallback = async ({ code }) => {
   const res = await HTTP.authCallback(code)
@@ -22,10 +41,7 @@ export const getUserData = async () => {
 }
 
 
-export const submitSurvey = async (form) => {
-  const res = await HTTP.submitSurvey(form)
-  return res.status
-}
+
 
 export const getArticle = async ({ articleId }) => {
   const res = await HTTP.getArticle({ articleId })
@@ -57,9 +73,9 @@ export const getImageHistory = async (page) => {
 }
 
 export const getTemplates = async () => {
-  const res = await HTTP.getTemplate()
-  const templates = await res.json()
-  return templates
+  // const res = await HTTP.getTemplate()
+  // const templates = await res.json()
+  return []
 }
 
 export const doLoginSuccess = (payload) => ({

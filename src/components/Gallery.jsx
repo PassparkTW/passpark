@@ -46,27 +46,27 @@ const Gallery = ({ hasMore, imageItems, moreImage }) => {
           overflow: 'hidden',
         }}
       >
-      <ImageList sx={{ width: '60%', height: 'auto' }} cols={5}>
-        {imageItems.map((item, index) => (
-          <ImageListItem key={item.id}>
-            <img
-              src={item.url}
-              alt={item.keyword}
-              onClick={() => navigate(`/article/${item.id}`)}
-              loading="lazy"
-            />
-            <ImageListItemBar
-              title={`關鍵字:${item.keyword}`}
-              subtitle={`@${item.author_name}`}
-              actionIcon={
-                <IconButton onClick={() => handleShare(`${window.location.hostname}/article/${item.id}`)}>
-                  <ShareIcon />
-                </IconButton>
-              }
-            />
-          </ImageListItem>
-        ))}
-      </ImageList>
+        <ImageList sx={{ width: '60%', height: 'auto' }} cols={5}>
+          {imageItems.map((item, index) => (
+            <ImageListItem key={item.id}>
+              <img
+                src={item.imageUrl}
+                alt={item.keyword}
+                onClick={() => navigate(`/article/${item.id}`)}
+                loading="lazy"
+              />
+              <ImageListItemBar
+                title={`關鍵字:${item.keyword}`}
+                subtitle={`@${item.authorName}`}
+                actionIcon={
+                  <IconButton onClick={() => handleShare(`${window.location.hostname}/article/${item.id}`)}>
+                    <ShareIcon />
+                  </IconButton>
+                }
+              />
+            </ImageListItem>
+          ))}
+        </ImageList>
       </InfiniteScroll>
       <Snackbar
         open={open}
@@ -75,7 +75,7 @@ const Gallery = ({ hasMore, imageItems, moreImage }) => {
         message="連結已複製"
       />
     </GalleryContainer>
-);
+  );
 };
 
 export default Gallery;

@@ -11,10 +11,7 @@ const RegisterImpl = () => {
   const navigate = useNavigate();
   const onSubmit = (form) => {
     (async() => {
-      const { statusCode } = await submitSurvey(form)
-      if (statusCode >= 300) {
-        return
-      }
+      await submitSurvey(form)
       login({...user, isDone: true})
       navigate('/')
     })()

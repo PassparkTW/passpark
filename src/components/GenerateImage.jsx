@@ -6,6 +6,7 @@ const GenerateImage = ({ onSubmit, loading, templates }) => {
   const [tempId, setTempId] = useState('')
   const [templateMap, setTemplateMap] = useState({})
   const [prompt, setPrompt] = useState('')
+  const [tags, setTags] = useState('')
   useEffect(() => {
     const mapping = {}
     templates.forEach((template) => {
@@ -23,7 +24,7 @@ const GenerateImage = ({ onSubmit, loading, templates }) => {
     <Box sx={{ color: 'white', padding: 3, width: '40%' }}>
       <form onSubmit={(e) => {
         e.preventDefault()
-        onSubmit(prompt)
+        onSubmit({ prompt, tags })
       }}>
 
         <FormControl fullWidth margin="normal">
@@ -49,6 +50,15 @@ const GenerateImage = ({ onSubmit, loading, templates }) => {
           label="範本內容"
           value={temp}
           margin="normal"
+          rows={4}
+        />
+        <TextField
+          fullWidth
+          multiline
+          label="請嘗試描述想要圖片的目標人群，例如：老人,心智障礙(逗號分格)"
+          margin="normal"
+          value={tags}
+          onChange={(e) => setTags(e.target.value)}
           rows={4}
         />
         <TextField

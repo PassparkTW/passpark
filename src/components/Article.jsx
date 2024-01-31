@@ -4,6 +4,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import * as dayjs from 'dayjs'
 import 'dayjs/locale/zh-tw'
 import {Avatar} from "@mui/material";
+import Chip from '@mui/material/Chip';
 
 
 dayjs.extend(relativeTime)
@@ -148,6 +149,20 @@ return (
   )
 }
 
+const Tags = ({ tags }) => {
+  return (
+    <Row>
+      <ToolTitle>適用人群</ToolTitle>
+      {
+        tags.map(tag => {
+          console.log(tag)
+          return <Chip key={tag.name} label={tag.name}/>
+        })
+      }
+    </Row>
+  )
+}
+
 
 const Article = ({ article }) => {
   return (
@@ -162,6 +177,7 @@ const Article = ({ article }) => {
       <AuthorContainer>
         <AuthorMeta username={article.authorName} datetime={article.date} />
         <ToolInfos toolName="卡通插圖易讀產生" articleStyle="卡通插畫" keyword={article.keyword} />
+        <Tags tags={article.tags}/>
       </AuthorContainer>
     </ArticleContainer>
   )

@@ -5,8 +5,10 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
 const moreImages = async ({ page, setPage, setHasMore, setImageItems }) => {
-  const {articles} = await getImageHistory(page);
-  
+  const articles = await getImageHistory(page);
+  if (!articles) {
+    return
+  }
   if (articles.length === 0) {
     setHasMore(false);
   } else {
